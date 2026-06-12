@@ -1,0 +1,10 @@
+{
+  "appName": "Account Management App",
+  "navigation": "auto",
+  "baseUrl": "https://app.powerbi.com/reportEmbed?reportId=YOUR_REPORT_ID&appId=YOUR_APP_ID&autoAuth=true&ctid=YOUR_TENANT_ID",
+  "entrySteps": ["accessAccountsButton"],
+  "appDomains": ["app.powerbi.com"],
+  "authDomains": ["login.microsoftonline.com", "login.windows.net", "okta.com"],
+  "limits": { "maxRecordsPerRun": 25, "maxConsecutiveFailures": 3, "stalenessHours": 24 },
+  "retentionRuns": 5
+}

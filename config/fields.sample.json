@@ -1,0 +1,5 @@
+[
+  { "key": "weeklyRemarks", "label": "Weekly Remarks", "type": "textarea" },
+  { "key": "toggleCampaignA", "label": "Campaign: Example Campaign A", "type": "toggle", "campaign": "Example Campaign A", "sideEffect": true },
+  { "key": "toggleCampaignB", "label": "Campaign: Example Campaign B", "type": "toggle", "campaign": "Example Campaign B", "sideEffect": true }
+]

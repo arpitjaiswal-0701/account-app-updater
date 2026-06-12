@@ -1,0 +1,31 @@
+{
+  "generatedAt": "2026-01-01T10:00:00Z",
+  "records": [
+    {
+      "key": "acme-corp",
+      "name": "Acme Corp",
+      "recordId": "Acme Corp",
+      "fields": {
+        "weeklyRemarks": {
+          "proposed": "Renewal moving to security review; champion confirmed. Next: pricing workshop with procurement.",
+          "source": "deals/acme-corp/brief.md p.3; meeting notes 2026-01-08"
+        }
+      }
+    },
+    {
+      "key": "globex",
+      "name": "Globex Industries",
+      "recordId": "Globex Industries",
+      "fields": {
+        "weeklyRemarks": {
+          "proposed": "Expansion under discussion: +2,000 seats. Awaiting budget sign-off.",
+          "source": "meeting notes 2026-01-09"
+        },
+        "toggleCampaignA": {
+          "proposed": "On",
+          "source": "campaign decision, pipeline review 2026-01-05"
+        }
+      }
+    }
+  ]
+}

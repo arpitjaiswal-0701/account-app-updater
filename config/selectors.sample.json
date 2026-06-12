@@ -1,0 +1,14 @@
+{
+  "_comment": "Template. Regenerate per app via `npm run map` + MAPPING.md. Strategies: text|role|css|testid|label. Global controls may need a \"frames\" chain; card-scoped controls must not. {name} is substituted with the account name at runtime.",
+  "accessAccountsButton": { "strategy": "text", "value": "Access Accounts", "exact": false },
+  "accountSlicer": { "strategy": "css", "value": "div.slicer-dropdown-menu[aria-label='Account Name']" },
+  "accountSlicerSearch": { "strategy": "css", "value": ".slicer-dropdown-popup input:visible" },
+  "accountSlicerOption": { "strategy": "css", "value": "div.slicerItemContainer:has-text(\"{name}\"):visible" },
+  "slicerSelectAll": { "strategy": "css", "value": "div.slicerItemContainer:has-text(\"Select all\"):visible" },
+  "weeklyRemarks": { "strategy": "css", "value": "textarea.appmagic-textarea[placeholder*='Add Weekly Remarks']:visible" },
+  "addNotesButton": { "strategy": "css", "value": "button.appmagic-button-container:has-text(\"Add Weekly Notes\"):visible" },
+  "successModal": { "strategy": "text", "value": "Your Notes are Saved", "exact": false },
+  "successModalOk": { "strategy": "css", "value": "button.appmagic-button-container:has-text(\"Ok\"):visible" },
+  "verifyOpen": { "strategy": "css", "value": "button.appmagic-button-container:has-text(\"Remarks History\"):visible" },
+  "verifyClose": { "strategy": "css", "value": "button.appmagic-button-container:has-text(\"Close X\"):visible" }
+}

@@ -1,0 +1,13 @@
+# Sensitive: live account data, screenshots, journals, session profile
+data/*
+runs/
+mapping/
+chrome-profile/
+node_modules/
+applied-ledger.json
+# Live config is local-only (app.config holds tenant/report IDs; fields/selectors are
+# app-specific). Ship the *.sample.json templates instead — regenerate per app via MAPPING.md.
+config/app.config.json
+config/fields.json
+config/selectors.json
+!data/updates.sample.json

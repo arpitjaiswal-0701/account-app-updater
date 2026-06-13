@@ -1,4 +1,4 @@
-# account-app-upater // Ghosthand
+# Account-app-upater // Ghosthand
 
 Drive weekly **account-hygiene updates** into a Power BI "Account Management App"
 (a Power BI report with an embedded Power Apps writeback panel) through **real browser

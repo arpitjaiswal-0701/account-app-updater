@@ -1,8 +1,8 @@
 {
-  "name": "alm-automation",
+  "name": "ghosthand",
   "version": "1.0.0",
   "private": true,
-  "description": "Generate -> Review -> Apply UI update loop for the internal account app. Design v4, multi-agent review approved 2026-06-12.",
+  "description": "Ghosthand — Generate -> Review -> Apply UI update loop that writes weekly account remarks (and gated campaign toggles) into a Power BI Account Management App via real browser actions.",
   "scripts": {
     "map": "node src/map-fields.js",
     "list-accounts": "node src/list-accounts.js",

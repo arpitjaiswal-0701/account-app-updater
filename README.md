@@ -1,4 +1,6 @@
-# Account-app-upater // Ghosthand
+# Ghosthand
+
+> An invisible hand that fills your account fields for you.
 
 Drive weekly **account-hygiene updates** into a Power BI "Account Management App"
 (a Power BI report with an embedded Power Apps writeback panel) through **real browser
@@ -57,7 +59,7 @@ per account, then they apply. See each `SKILL.md` for the exact step list.
 ### B. The raw pipeline — scriptable, for advanced/manual use
 
 ```bash
-cd alm-automation
+cd ghosthand
 npm run list-accounts   # enumerate the app's account list  -> data/app-accounts.json
 # write data/updates.json yourself (see "Data contracts" below)
 npm run read            # scrape current values             -> data/current-values.json

@@ -49,10 +49,10 @@ current → proposed diff before anything is written.
 
 | Skill | Use |
 |---|---|
-| `/alm-update <account> [context]` | Spot-update **one** account. Drafts a remark from briefs/graph, shows the diff in chat, applies on your "yes". |
-| `/alm-bulk-update [subset]` | Weekly sweep over **all** accounts the app lists. Auto-drafts a remark per account (one validated agent each, no fabrication), batch-reviews, applies the approved set. |
+| `/ghosthand <account> [context]` | Spot-update **one** account. Drafts a remark from briefs/graph, shows the diff in chat, applies on your "yes". |
+| `/ghosthand-all [subset]` | Weekly sweep over **all** accounts the app lists. Auto-drafts a remark per account (one validated agent each, no fabrication), batch-reviews, applies the approved set. |
 
-These are Claude Code skills (`~/.claude/skills/alm-update`, `~/.claude/skills/alm-bulk-update`).
+These are Claude Code skills (`~/.claude/skills/ghosthand`, `~/.claude/skills/ghosthand-all`).
 They orchestrate the pipeline below and render the review **in chat** — you approve/edit/drop
 per account, then they apply. See each `SKILL.md` for the exact step list.
 

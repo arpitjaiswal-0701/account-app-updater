@@ -15,10 +15,10 @@ multi-agent review 2026-06-12 with conditions:
 
 Day-to-day, drive this through the invokable skills rather than raw npm scripts:
 
-- **`/alm-update <account> [context]`** — spot-update ONE account. Drafts a weekly remark
+- **`/ghosthand <account> [context]`** — spot-update ONE account. Drafts a weekly remark
   from briefs/graph, shows the current→proposed diff in chat, applies on your "yes".
   Callable from any session.
-- **`/alm-bulk-update [subset]`** — weekly sweep across all accounts the app lists.
+- **`/ghosthand-all [subset]`** — weekly sweep across all accounts the app lists.
   Enumerates the live list (`npm run list-accounts`), auto-drafts a remark per account
   (one schema-validated agent each, no fabrication), batch-reviews in chat, applies the
   approved set.

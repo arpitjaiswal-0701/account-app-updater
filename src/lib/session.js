@@ -149,11 +149,21 @@ async function selectAccount(page, selectors, name, rt = null) {
   if (selectors[KEYS.SLICER_SEARCH]) {
     try {
       const s = await resolveStrict(page, selectors[KEYS.SLICER_SEARCH], KEYS.SLICER_SEARCH, { timeout: 4000 });
-      await s.fill(name);
-      await page.waitForTimeout(1200);
+      // Type a PARTIAL query with real keystrokes so PBI's slicer search
+      // actually re-renders/filters the virtualized list. A bulk .fill() can
+      // set the input value without firing the filter, leaving the target row
+      // virtualized below the fold (:visible never trips → timeout). A partial
+      // also dodges exact-string rendering mismatches. The option click below
+      // still matches the EXACT name, so record-identity stays strict.
+      const trimmed = name.trim();
+      const query = trimmed.slice(0, Math.min(5, trimmed.length));
+      await s.click();
+      await s.fill('');
+      await s.pressSequentially(query, { delay: 120 });
+      await page.waitForTimeout(2500); // let filtered results render
     } catch { /* search box optional — fall through to direct option click */ }
   }
-  await (await resolveStrict(page, selectors[KEYS.SLICER_OPTION], KEYS.SLICER_OPTION, { sub: name, timeout: 8000 })).click();
+  await (await resolveStrict(page, selectors[KEYS.SLICER_OPTION], KEYS.SLICER_OPTION, { sub: name, timeout: 12000 })).click();
   await page.keyboard.press('Escape');
   await page.waitForTimeout(5000); // slicer-driven Power Apps gallery refresh
 }

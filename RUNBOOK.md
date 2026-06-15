@@ -121,6 +121,24 @@ UI changed. Fix:
 | VERIFY_FAIL | Value didn't stick / modal missing / toggle state wrong | Check the record |
 | IDENTITY_MISMATCH | Card for the expected account not found uniquely | Untouched |
 
+## Slicer pre-flight timeout (account row not found)
+
+Symptom: `read`/`apply` aborts on the first record with
+`locator … div.slicerItemContainer:has-text("<name>"):visible … Timeout`.
+
+Two causes, in order of likelihood:
+1. **Cold Azure AD session** — the app showed a login page, so the slicer never rendered.
+   Run `npm run list-accounts` once (opens Chrome, lets you sign in, warms the session and
+   refreshes `data/app-accounts.json`), then retry `read`.
+2. **Slicer search not filtering** — the Account Name slicer virtualizes its list, so a target
+   row sits below the fold and `:visible` never trips. `selectAccount` (`src/lib/session.js`)
+   drives the slicer search box to filter the row into view. A bulk `.fill()` can set the input
+   value *without* triggering Power BI's filter re-render; fixed 2026-06-15 by typing a
+   **partial query with real keystrokes** (`pressSequentially`) + a longer settle wait, while
+   still clicking and identity-matching the **exact** account name (record identity stays
+   strict). If this regresses after a UI change, verify the `accountSlicerSearch` selector still
+   targets the popup's search input (`npm run map`).
+
 ## Privacy & hygiene
 - All artifacts stay in this folder (`data/`, `runs/`, `mapping/`) — local-only,
   **not** under OneDrive sync. Only the last 5 runs are kept.

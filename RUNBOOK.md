@@ -51,6 +51,24 @@ the tool always starts from a fresh entry.
 Mapping session → `config/selectors.json`, `config/fields.json`,
 `config/app.config.json`. See `MAPPING.md`.
 
+Toast icon (optional, cosmetic): give the Windows notifications the ALM logo
+instead of the SnoreToast default. Run once (user Start Menu only, no admin):
+```
+python scripts/convert-logo.py [path-to-logo]   # → assets/alm.png + assets/alm.ico
+powershell -ExecutionPolicy Bypass -File scripts/install-toast-shortcut.ps1
+```
+The Start Menu shortcut (AppUserModelID = `Adobe.ALM.Toast`, matching `src/lib/notify.js`)
+supplies both the header icon (its `.ico`) and the header name (its filename). The big
+in-toast image comes separately from `notify.js` passing `icon: assets/alm.png`.
+
+Two hard-won gotchas (see the cyan-icon saga in `install-toast-shortcut.ps1`):
+- **Do NOT** register an `AppUserModelId\<id>\IconUri` registry key — Windows then renders
+  the header from the PNG and it comes out **cyan**. Shortcut-only = correct red.
+- Windows caches the header icon **per AUMID** and never refreshes it. To change the icon,
+  also **bump the AUMID** in `install-toast-shortcut.ps1` + `src/lib/notify.js`, else the
+  stale icon sticks. (`.ico` must be the hand-written BGRA build from `convert-logo.py`;
+  Pillow's default writer swaps red↔blue.)
+
 ### 1. Generate (Claude session — no browser)
 Ask Claude to produce `data/updates.json` from the ALM graph / account briefs.
 Contract (see `data/updates.sample.json`): per account, `weeklyRemarks` text
@@ -87,7 +105,8 @@ skipped) → check nobody changed values since the read pass → type remarks �
 note appears in the saved-notes view → flip approved toggles (only if state
 differs) → verify each → screenshot the card before/after.
 
-Windows toast + beep on sign-in pause, abort, or finish.
+Windows toast + beep on sign-in pause (⏸️), abort (⛔), or finish (✅/⚠️). Toast
+icon is the ALM logo once the §0 one-time setup is run; otherwise the default mascot.
 
 ### 5. After the run
 Read `runs/<latest>/SUMMARY.md`:

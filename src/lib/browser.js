@@ -103,7 +103,7 @@ function onAuthPage(page, cfg) {
 // finish MFA interactively, then let the caller restart the record from
 // navigate (Constraint Guardian finding 6; User Advocate finding 3).
 async function waitForUserAuth(page, cfg) {
-  notify('ALM automation paused', 'Sign-in required. Complete the sign-in/MFA in the automation Chrome window.');
+  notify('⏸️ ALM run paused', 'Sign-in required. Complete the sign-in/MFA in the automation Chrome window.');
   beep();
   console.log('\n[PAUSED] Complete the sign-in/MFA in the automation window. Waiting (up to 10 min)...');
   const deadline = Date.now() + 600_000;

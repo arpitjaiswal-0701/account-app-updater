@@ -333,7 +333,7 @@ async function main() {
         consecutiveFailures++;
         if (consecutiveFailures >= cfg.limits.maxConsecutiveFailures) {
           aborted = true;
-          notify('ALM automation aborted', `${consecutiveFailures} consecutive failures — looks systemic (app change?). See SUMMARY.md.`);
+          notify('⛔ ALM run aborted', `${consecutiveFailures} consecutive failures — looks systemic (app change?). See SUMMARY.md.`);
           beep();
           console.error(`\nAborting: ${consecutiveFailures} consecutive failures. Likely an app/selector change — see RUNBOOK.md repair section.`);
           break;
@@ -348,7 +348,13 @@ async function main() {
     console.log(`\nSummary: ${buckets.ok.length} applied & verified · ${buckets.okUnverified.length} applied (history lagging, spot-check later) · ${buckets.failedBeforeSave.length} failed before save (no change) · ${buckets.failedAfterSave.length} failed after save (CHECK MANUALLY) · ${buckets.conflict.length + buckets.identity.length} skipped · ${buckets.duplicate.length} duplicate (already applied) · ${buckets.notAttempted.length} not attempted`);
     console.log(`Full summary: ${file}`);
     if (purged.length) console.log(`Retention: purged ${purged.length} old run folder(s).`);
-    notify('ALM automation finished', `${buckets.ok.length + buckets.okUnverified.length} applied, ${buckets.failedBeforeSave.length + buckets.failedAfterSave.length} failed, ${buckets.notAttempted.length} not attempted.${aborted ? ' (ABORTED)' : ''}`);
+    const appliedN = buckets.ok.length + buckets.okUnverified.length;
+    const failedN = buckets.failedBeforeSave.length + buckets.failedAfterSave.length;
+    const naN = buckets.notAttempted.length;
+    const toastTitle = aborted ? '⛔ ALM run aborted'
+                     : failedN ? '⚠️ ALM run — check failures'
+                     :           '✅ ALM run complete';
+    notify(toastTitle, `${appliedN} applied · ${failedN} failed · ${naN} not attempted`);
     beep();
   }
 }

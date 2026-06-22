@@ -69,6 +69,10 @@ Two hard-won gotchas (see the cyan-icon saga in `install-toast-shortcut.ps1`):
   stale icon sticks. (`.ico` must be the hand-written BGRA build from `convert-logo.py`;
   Pillow's default writer swaps red↔blue.)
 
+Result:
+
+![ALM Automation toast notification](docs/toast-notification.png)
+
 ### 1. Generate (Claude session — no browser)
 Ask Claude to produce `data/updates.json` from the ALM graph / account briefs.
 Contract (see `data/updates.sample.json`): per account, `weeklyRemarks` text
